@@ -639,7 +639,7 @@ PlaySong.TextSize = 14.000
 
 -- Scripts:
 
-local function AQRTV_fake_script() -- PlayerTracker.TheOnlyScript 
+local function AZZZ_fake_script() -- PlayerTracker.TheOnlyScript 
 	local script = Instance.new('LocalScript', PlayerTracker)
 
 	local settings = {}
@@ -898,14 +898,10 @@ local function AQRTV_fake_script() -- PlayerTracker.TheOnlyScript
 					ButtonFrame.Server.ServerFrame.MaybeScrolling.Team.Visible = false
 				end
 				for i,v in next, plr.Backpack:GetChildren() do
-					print(v.Name, "Check1")
-					if v then
-						print(v.Name, "Check2")
-						local tool = ButtonFrame.Server.ServerFrame.Backpack.Tool:Clone()
-						tool.Parent = ButtonFrame.Server.ServerFrame.Backpack
-						tool.Visible = true
-						tool.Text = v.Name
-					end
+					local tool = ButtonFrame.Server.ServerFrame.Backpack.Tool:Clone()
+					tool.Parent = ButtonFrame.Server.ServerFrame.Backpack
+					tool.Visible = true
+					tool.Text = v.Name
 				end
 				--[[
 				plr.Backpack.ChildRemoved:Connect(function(tool)
@@ -920,4 +916,4 @@ local function AQRTV_fake_script() -- PlayerTracker.TheOnlyScript
 		end
 	end
 end
-coroutine.wrap(AQRTV_fake_script)()
+coroutine.wrap(AZZZ_fake_script)()
