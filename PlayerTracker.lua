@@ -255,6 +255,7 @@ Players.BorderColor3 = Color3.fromRGB(163, 255, 14)
 Players.BorderSizePixel = 2
 Players.Position = UDim2.new(0.00245700241, 0, 0.00199203193, 0)
 Players.Size = UDim2.new(0, 140, 0, 501)
+Players.CanvasSize = UDim2.new(0, 0, 0, 502)
 Players.ScrollBarThickness = 7
 
 UIListLayout.Parent = Players
@@ -639,7 +640,7 @@ PlaySong.TextSize = 14.000
 
 -- Scripts:
 
-local function AELWNYN_fake_script() -- PlayerTracker.TheOnlyScript 
+local function FOFCQ_fake_script() -- PlayerTracker.TheOnlyScript 
 	local script = Instance.new('LocalScript', PlayerTracker)
 
 	local settings = {}
@@ -913,7 +914,6 @@ local function AELWNYN_fake_script() -- PlayerTracker.TheOnlyScript
 					tool.Visible = true
 					tool.Text = v.Name
 				end
-				--[[
 				plr.Backpack.ChildRemoved:Connect(function(tool)
 					for i,v in next, ButtonFrame.Server.ServerFrame.Backpack:GetChildren() do
 						if tool.Name == v.Name then
@@ -921,9 +921,8 @@ local function AELWNYN_fake_script() -- PlayerTracker.TheOnlyScript
 						end
 					end
 				end)
-				]]
 			end)
 		end
 	end
 end
-coroutine.wrap(AELWNYN_fake_script)()
+coroutine.wrap(FOFCQ_fake_script)()
