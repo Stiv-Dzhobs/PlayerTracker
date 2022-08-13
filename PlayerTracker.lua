@@ -639,7 +639,7 @@ PlaySong.TextSize = 14.000
 
 -- Scripts:
 
-local function AZZZ_fake_script() -- PlayerTracker.TheOnlyScript 
+local function AELWNYN_fake_script() -- PlayerTracker.TheOnlyScript 
 	local script = Instance.new('LocalScript', PlayerTracker)
 
 	local settings = {}
@@ -862,6 +862,16 @@ local function AZZZ_fake_script() -- PlayerTracker.TheOnlyScript
 	for i,v in next, ButtonFrame.Server.ServerFrame.Players:GetChildren() do
 		if v:IsA("TextButton") then
 			v.Activated:Connect(function()
+				for i,v in next, ButtonFrame.Server.ServerFrame.Backpack:GetChildren() do
+					print(v.Name, "1")
+					if v:IsA("TextLabel") then
+						print(v.Name, "2")
+						if v.Visible ~= false then
+							print(v.Name, "3")
+							v:Destroy()
+						end
+					end
+				end
 				local plr = game.Players:GetPlayerByUserId(game.Players:GetUserIdFromNameAsync(v.Name))
 				local Players = game:GetService("Players")
 				local userId = game.Players:GetUserIdFromNameAsync(v.Name)
@@ -916,4 +926,4 @@ local function AZZZ_fake_script() -- PlayerTracker.TheOnlyScript
 		end
 	end
 end
-coroutine.wrap(AZZZ_fake_script)()
+coroutine.wrap(AELWNYN_fake_script)()
