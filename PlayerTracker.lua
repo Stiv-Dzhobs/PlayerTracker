@@ -460,7 +460,7 @@ TeleportTo.BorderSizePixel = 3
 TeleportTo.Position = UDim2.new(0.642313421, 0, 0.509920537, 0)
 TeleportTo.Size = UDim2.new(0, 142, 0, 26)
 TeleportTo.Font = Enum.Font.Code
-TeleportTo.Text = "Teleport To"
+TeleportTo.Text = "Teleport"
 TeleportTo.TextColor3 = Color3.fromRGB(16, 14, 179)
 TeleportTo.TextScaled = true
 TeleportTo.TextSize = 14.000
@@ -658,7 +658,7 @@ PlaySong.TextSize = 14.000
 
 -- Scripts:
 
-local function HTZEL_fake_script() -- PlayerTracker.TheOnlyScript 
+local function LBQQUA_fake_script() -- PlayerTracker.TheOnlyScript 
 	local script = Instance.new('LocalScript', PlayerTracker)
 
 	local settings = {}
@@ -883,11 +883,8 @@ local function HTZEL_fake_script() -- PlayerTracker.TheOnlyScript
 			v.Activated:Connect(function()
 				local function CallActivated()
 					for i,v in next, ButtonFrame.Server.ServerFrame.Backpack:GetChildren() do
-						print(v.Name, "1")
 						if v:IsA("TextLabel") then
-							print(v.Name, "2")
 							if v.Visible ~= false then
-								print(v.Name, "3")
 								v:Destroy()
 							end
 						end
@@ -942,15 +939,19 @@ local function HTZEL_fake_script() -- PlayerTracker.TheOnlyScript
 					end)
 					ButtonFrame.Server.ServerFrame.TeleportTo.MouseEnter:Connect(function()
 						local MyPlayer = game.Players.LocalPlayer
+						local plr = plr
 						while wait(0.01) do
 							ButtonFrame.Server.ServerFrame.TeleportTo.Text = "Teleport".." ("..(MyPlayer.Character.HumanoidRootPart.Position - plr.Character.HumanoidRootPart.CFrame).Magnitude..")"
 						end
 					end)
+					ButtonFrame.Server.ServerFrame.TeleportTo.MouseLeave:Connect(function()
+						ButtonFrame.Server.ServerFrame.TeleportTo.Text = "Teleport"
+					end)
 					ButtonFrame.Server.ServerFrame.TeleportTo.Activated:Connect(function()
 						local MyPlayer = game.Players.LocalPlayer
 						ButtonFrame.Server.ServerFrame.TeleportTo.Text = "Teleport"
+						local plr = plr
 						MyPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = plr.Character:WaitForChild("HumanoidRootPart").CFrame
-	
 					end)
 				end
 				CallActivated()
@@ -958,4 +959,4 @@ local function HTZEL_fake_script() -- PlayerTracker.TheOnlyScript
 		end
 	end
 end
-coroutine.wrap(HTZEL_fake_script)()
+coroutine.wrap(LBQQUA_fake_script)()
