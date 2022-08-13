@@ -40,6 +40,7 @@ local Team = Instance.new("TextBox")
 local Backpack = Instance.new("ScrollingFrame")
 local Tool = Instance.new("TextLabel")
 local UIListLayout_3 = Instance.new("UIListLayout")
+local TeleportTo = Instance.new("TextButton")
 local Settings = Instance.new("TextButton")
 local SettingsFrame = Instance.new("Frame")
 local CloseGuiKeybind = Instance.new("TextLabel")
@@ -355,7 +356,7 @@ Membership.TextWrapped = true
 AccountAge.Name = "AccountAge"
 AccountAge.Parent = ServerFrame
 AccountAge.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-AccountAge.BackgroundTransparency = 0.950
+AccountAge.BackgroundTransparency = 1.000
 AccountAge.Position = UDim2.new(0.64301616, 0, 0.292527139, 0)
 AccountAge.Size = UDim2.new(0, 144, 0, 28)
 AccountAge.ClearTextOnFocus = false
@@ -373,7 +374,7 @@ MaybeScrolling.Name = "MaybeScrolling"
 MaybeScrolling.Parent = ServerFrame
 MaybeScrolling.Active = true
 MaybeScrolling.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-MaybeScrolling.BackgroundTransparency = 0.800
+MaybeScrolling.BackgroundTransparency = 1.000
 MaybeScrolling.Position = UDim2.new(0.648204923, 0, 0.364162505, 0)
 MaybeScrolling.Size = UDim2.new(0, 142, 0, 66)
 MaybeScrolling.CanvasSize = UDim2.new(0, 0, 0, 66)
@@ -449,6 +450,23 @@ Tool.TextWrapped = true
 UIListLayout_3.Parent = Backpack
 UIListLayout_3.SortOrder = Enum.SortOrder.LayoutOrder
 UIListLayout_3.Padding = UDim.new(0, 5)
+
+TeleportTo.Name = "TeleportTo"
+TeleportTo.Parent = ServerFrame
+TeleportTo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TeleportTo.BackgroundTransparency = 1.000
+TeleportTo.BorderColor3 = Color3.fromRGB(91, 200, 22)
+TeleportTo.BorderSizePixel = 3
+TeleportTo.Position = UDim2.new(0.642313421, 0, 0.509920537, 0)
+TeleportTo.Size = UDim2.new(0, 142, 0, 26)
+TeleportTo.Font = Enum.Font.Code
+TeleportTo.Text = "Teleport To"
+TeleportTo.TextColor3 = Color3.fromRGB(16, 14, 179)
+TeleportTo.TextScaled = true
+TeleportTo.TextSize = 14.000
+TeleportTo.TextStrokeColor3 = Color3.fromRGB(112, 12, 200)
+TeleportTo.TextStrokeTransparency = 0.710
+TeleportTo.TextWrapped = true
 
 Settings.Name = "Settings"
 Settings.Parent = ButtonFrame
@@ -640,7 +658,7 @@ PlaySong.TextSize = 14.000
 
 -- Scripts:
 
-local function FOFCQ_fake_script() -- PlayerTracker.TheOnlyScript 
+local function HTZEL_fake_script() -- PlayerTracker.TheOnlyScript 
 	local script = Instance.new('LocalScript', PlayerTracker)
 
 	local settings = {}
@@ -863,66 +881,81 @@ local function FOFCQ_fake_script() -- PlayerTracker.TheOnlyScript
 	for i,v in next, ButtonFrame.Server.ServerFrame.Players:GetChildren() do
 		if v:IsA("TextButton") then
 			v.Activated:Connect(function()
-				for i,v in next, ButtonFrame.Server.ServerFrame.Backpack:GetChildren() do
-					print(v.Name, "1")
-					if v:IsA("TextLabel") then
-						print(v.Name, "2")
-						if v.Visible ~= false then
-							print(v.Name, "3")
-							v:Destroy()
-						end
-					end
-				end
-				local plr = game.Players:GetPlayerByUserId(game.Players:GetUserIdFromNameAsync(v.Name))
-				local Players = game:GetService("Players")
-				local userId = game.Players:GetUserIdFromNameAsync(v.Name)
-				local thumbType = Enum.ThumbnailType.HeadShot
-				local thumbSize = Enum.ThumbnailSize.Size100x100
-				local content, isReady = Players:GetUserThumbnailAsync(userId, thumbType, thumbSize)
-				local imageLabel = ButtonFrame.Server.ServerFrame.PlayerImage
-				imageLabel.Image = content
-				imageLabel.Size = UDim2.new(0, 100, 0, 100)
-				ButtonFrame.Server.ServerFrame.PlayerName.Text = plr.DisplayName
-				ButtonFrame.Server.ServerFrame.UserId.Text = plr.UserId
-				ButtonFrame.Server.ServerFrame.DisplayName.Text = plr.Name
-				if plr.MembershipType == Enum.MembershipType.None then
-					ButtonFrame.Server.ServerFrame.Membership.Text = "None"
-				elseif plr.MembershipType == Enum.MembershipType.BuildersClub then
-					ButtonFrame.Server.ServerFrame.Membership.Text = "Builders Club"
-				elseif plr.MembershipType == Enum.MembershipType.TurboBuildersClub then
-					ButtonFrame.Server.ServerFrame.Membership.Text = "Turbo Builders Club"
-				elseif plr.MembershipType == Enum.MembershipType.OutrageousBuildersClub then
-					ButtonFrame.Server.ServerFrame.Membership.Text = "Outrageous Builders Club"
-				elseif plr.MembershipType == Enum.MembershipType.Premium then
-					ButtonFrame.Server.ServerFrame.Membership.Text = "Premium"
-				end
-				if plr.FollowUserId ~= 0 then
-					ButtonFrame.Server.ServerFrame.MaybeScrolling.FollowedUser.Visible = true
-					ButtonFrame.Server.ServerFrame.MaybeScrolling.FollowedUser.Text = game.Players:GetNameFromUserIdAsync(plr.FollowUserId)
-				else
-					ButtonFrame.Server.ServerFrame.MaybeScrolling.FollowedUser.Visible = false
-				end
-				if plr.Team then
-					ButtonFrame.Server.ServerFrame.MaybeScrolling.Team.Visible = true
-					ButtonFrame.Server.ServerFrame.MaybeScrolling.Team.Text = tostring(plr.Team)
-				else
-					ButtonFrame.Server.ServerFrame.MaybeScrolling.Team.Visible = false
-				end
-				for i,v in next, plr.Backpack:GetChildren() do
-					local tool = ButtonFrame.Server.ServerFrame.Backpack.Tool:Clone()
-					tool.Parent = ButtonFrame.Server.ServerFrame.Backpack
-					tool.Visible = true
-					tool.Text = v.Name
-				end
-				plr.Backpack.ChildRemoved:Connect(function(tool)
+				local function CallActivated()
 					for i,v in next, ButtonFrame.Server.ServerFrame.Backpack:GetChildren() do
-						if tool.Name == v.Name then
-							v:Destroy()
+						print(v.Name, "1")
+						if v:IsA("TextLabel") then
+							print(v.Name, "2")
+							if v.Visible ~= false then
+								print(v.Name, "3")
+								v:Destroy()
+							end
 						end
 					end
-				end)
+					local plr = game.Players:GetPlayerByUserId(game.Players:GetUserIdFromNameAsync(v.Name))
+					local Players = game:GetService("Players")
+					local userId = game.Players:GetUserIdFromNameAsync(v.Name)
+					local thumbType = Enum.ThumbnailType.HeadShot
+					local thumbSize = Enum.ThumbnailSize.Size100x100
+					local content, isReady = Players:GetUserThumbnailAsync(userId, thumbType, thumbSize)
+					local imageLabel = ButtonFrame.Server.ServerFrame.PlayerImage
+					imageLabel.Image = content
+					imageLabel.Size = UDim2.new(0, 100, 0, 100)
+					ButtonFrame.Server.ServerFrame.PlayerName.Text = plr.DisplayName
+					ButtonFrame.Server.ServerFrame.UserId.Text = plr.UserId
+					ButtonFrame.Server.ServerFrame.DisplayName.Text = plr.Name
+					if plr.MembershipType == Enum.MembershipType.None then
+						ButtonFrame.Server.ServerFrame.Membership.Text = "None"
+					elseif plr.MembershipType == Enum.MembershipType.BuildersClub then
+						ButtonFrame.Server.ServerFrame.Membership.Text = "Builders Club"
+					elseif plr.MembershipType == Enum.MembershipType.TurboBuildersClub then
+						ButtonFrame.Server.ServerFrame.Membership.Text = "Turbo Builders Club"
+					elseif plr.MembershipType == Enum.MembershipType.OutrageousBuildersClub then
+						ButtonFrame.Server.ServerFrame.Membership.Text = "Outrageous Builders Club"
+					elseif plr.MembershipType == Enum.MembershipType.Premium then
+						ButtonFrame.Server.ServerFrame.Membership.Text = "Premium"
+					end
+					if plr.FollowUserId ~= 0 then
+						ButtonFrame.Server.ServerFrame.MaybeScrolling.FollowedUser.Visible = true
+						ButtonFrame.Server.ServerFrame.MaybeScrolling.FollowedUser.Text = game.Players:GetNameFromUserIdAsync(plr.FollowUserId)
+					else
+						ButtonFrame.Server.ServerFrame.MaybeScrolling.FollowedUser.Visible = false
+					end
+					if plr.Team then
+						ButtonFrame.Server.ServerFrame.MaybeScrolling.Team.Visible = true
+						ButtonFrame.Server.ServerFrame.MaybeScrolling.Team.Text = tostring(plr.Team)
+					else
+						ButtonFrame.Server.ServerFrame.MaybeScrolling.Team.Visible = false
+					end
+					for i,v in next, plr.Backpack:GetChildren() do
+						local tool = ButtonFrame.Server.ServerFrame.Backpack.Tool:Clone()
+						tool.Parent = ButtonFrame.Server.ServerFrame.Backpack
+						tool.Visible = true
+						tool.Text = v.Name
+					end
+					plr.Backpack.ChildRemoved:Connect(function(tool)
+						for i,v in next, ButtonFrame.Server.ServerFrame.Backpack:GetChildren() do
+							if tool.Name == v.Name then
+								v:Destroy()
+							end
+						end
+					end)
+					ButtonFrame.Server.ServerFrame.TeleportTo.MouseEnter:Connect(function()
+						local MyPlayer = game.Players.LocalPlayer
+						while wait(0.01) do
+							ButtonFrame.Server.ServerFrame.TeleportTo.Text = "Teleport".." ("..(MyPlayer.Character.HumanoidRootPart.Position - plr.Character.HumanoidRootPart.CFrame).Magnitude..")"
+						end
+					end)
+					ButtonFrame.Server.ServerFrame.TeleportTo.Activated:Connect(function()
+						local MyPlayer = game.Players.LocalPlayer
+						ButtonFrame.Server.ServerFrame.TeleportTo.Text = "Teleport"
+						MyPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = plr.Character:WaitForChild("HumanoidRootPart").CFrame
+	
+					end)
+				end
+				CallActivated()
 			end)
 		end
 	end
 end
-coroutine.wrap(FOFCQ_fake_script)()
+coroutine.wrap(HTZEL_fake_script)()
