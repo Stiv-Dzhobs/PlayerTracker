@@ -38,7 +38,7 @@ local FollowedUser = Instance.new("TextBox")
 local UIListLayout_2 = Instance.new("UIListLayout")
 local Team = Instance.new("TextBox")
 local Backpack = Instance.new("ScrollingFrame")
-local ToolExamplePLRTRKR = Instance.new("TextLabel")
+local Tool = Instance.new("TextLabel")
 local UIListLayout_3 = Instance.new("UIListLayout")
 local Settings = Instance.new("TextButton")
 local SettingsFrame = Instance.new("Frame")
@@ -428,22 +428,22 @@ Backpack.Size = UDim2.new(0, 100, 0, 102)
 Backpack.CanvasSize = UDim2.new(0, 0, 0, 103)
 Backpack.ScrollBarThickness = 5
 
-ToolExamplePLRTRKR.Name = "ToolExamplePLRTRKR"
-ToolExamplePLRTRKR.Parent = Backpack
-ToolExamplePLRTRKR.BackgroundColor3 = Color3.fromRGB(58, 71, 182)
-ToolExamplePLRTRKR.BackgroundTransparency = 0.750
-ToolExamplePLRTRKR.BorderColor3 = Color3.fromRGB(58, 117, 3)
-ToolExamplePLRTRKR.BorderSizePixel = 2
-ToolExamplePLRTRKR.Position = UDim2.new(-0.0200000033, 0, -0.00266689621, 0)
-ToolExamplePLRTRKR.Size = UDim2.new(0, 85, 0, 28)
-ToolExamplePLRTRKR.Visible = false
-ToolExamplePLRTRKR.Font = Enum.Font.Code
-ToolExamplePLRTRKR.Text = "Tool"
-ToolExamplePLRTRKR.TextColor3 = Color3.fromRGB(255, 6, 56)
-ToolExamplePLRTRKR.TextScaled = true
-ToolExamplePLRTRKR.TextSize = 14.000
-ToolExamplePLRTRKR.TextStrokeTransparency = 0.670
-ToolExamplePLRTRKR.TextWrapped = true
+Tool.Name = "Tool"
+Tool.Parent = Backpack
+Tool.BackgroundColor3 = Color3.fromRGB(58, 71, 182)
+Tool.BackgroundTransparency = 0.750
+Tool.BorderColor3 = Color3.fromRGB(58, 117, 3)
+Tool.BorderSizePixel = 2
+Tool.Position = UDim2.new(-0.0200000033, 0, -0.00266689621, 0)
+Tool.Size = UDim2.new(0, 85, 0, 28)
+Tool.Visible = false
+Tool.Font = Enum.Font.Code
+Tool.Text = "Tool"
+Tool.TextColor3 = Color3.fromRGB(255, 6, 56)
+Tool.TextScaled = true
+Tool.TextSize = 14.000
+Tool.TextStrokeTransparency = 0.670
+Tool.TextWrapped = true
 
 UIListLayout_3.Parent = Backpack
 UIListLayout_3.SortOrder = Enum.SortOrder.LayoutOrder
@@ -639,7 +639,7 @@ PlaySong.TextSize = 14.000
 
 -- Scripts:
 
-local function DSTX_fake_script() -- PlayerTracker.TheOnlyScript 
+local function AQRTV_fake_script() -- PlayerTracker.TheOnlyScript 
 	local script = Instance.new('LocalScript', PlayerTracker)
 
 	local settings = {}
@@ -862,9 +862,6 @@ local function DSTX_fake_script() -- PlayerTracker.TheOnlyScript
 	for i,v in next, ButtonFrame.Server.ServerFrame.Players:GetChildren() do
 		if v:IsA("TextButton") then
 			v.Activated:Connect(function()
-				for i,v in next, ButtonFrame.Server.ServerFrame.Backpack:GetChildren() do
-					v:Destroy()
-				end
 				local plr = game.Players:GetPlayerByUserId(game.Players:GetUserIdFromNameAsync(v.Name))
 				local Players = game:GetService("Players")
 				local userId = game.Players:GetUserIdFromNameAsync(v.Name)
@@ -876,7 +873,7 @@ local function DSTX_fake_script() -- PlayerTracker.TheOnlyScript
 				imageLabel.Size = UDim2.new(0, 100, 0, 100)
 				ButtonFrame.Server.ServerFrame.PlayerName.Text = plr.DisplayName
 				ButtonFrame.Server.ServerFrame.UserId.Text = plr.UserId
-				ButtonFrame.Server.ServerFrame.DisplayName.Text = plr.DisplayName
+				ButtonFrame.Server.ServerFrame.DisplayName.Text = plr.Name
 				if plr.MembershipType == Enum.MembershipType.None then
 					ButtonFrame.Server.ServerFrame.Membership.Text = "None"
 				elseif plr.MembershipType == Enum.MembershipType.BuildersClub then
@@ -902,17 +899,13 @@ local function DSTX_fake_script() -- PlayerTracker.TheOnlyScript
 				end
 				for i,v in next, plr.Backpack:GetChildren() do
 					print(v.Name, "Check1")
-					--if v then
-					--for i,b in next, ButtonFrame.Server.ServerFrame.Backpack:GetChildren() do
-	
-						--print(v.Name, "Check2")
-							--if not v.Name == b.Name then
-								local tool = ButtonFrame.Server.ServerFrame.Backpack:WaitForChild("ToolExamplePLRTRKR"):Clone()
-								tool.Parent = ButtonFrame.Server.ServerFrame.Backpack
-								tool.Text = v.Name
-							--end
-						--end
-					--end
+					if v then
+						print(v.Name, "Check2")
+						local tool = ButtonFrame.Server.ServerFrame.Backpack.Tool:Clone()
+						tool.Parent = ButtonFrame.Server.ServerFrame.Backpack
+						tool.Visible = true
+						tool.Text = v.Name
+					end
 				end
 				--[[
 				plr.Backpack.ChildRemoved:Connect(function(tool)
@@ -927,4 +920,4 @@ local function DSTX_fake_script() -- PlayerTracker.TheOnlyScript
 		end
 	end
 end
-coroutine.wrap(DSTX_fake_script)()
+coroutine.wrap(AQRTV_fake_script)()
