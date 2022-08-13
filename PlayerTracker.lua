@@ -639,7 +639,7 @@ PlaySong.TextSize = 14.000
 
 -- Scripts:
 
-local function RKYDRN_fake_script() -- PlayerTracker.TheOnlyScript 
+local function DSTX_fake_script() -- PlayerTracker.TheOnlyScript 
 	local script = Instance.new('LocalScript', PlayerTracker)
 
 	local settings = {}
@@ -874,7 +874,7 @@ local function RKYDRN_fake_script() -- PlayerTracker.TheOnlyScript
 				local imageLabel = ButtonFrame.Server.ServerFrame.PlayerImage
 				imageLabel.Image = content
 				imageLabel.Size = UDim2.new(0, 100, 0, 100)
-				ButtonFrame.Server.ServerFrame.PlayerName.Text = v.Name
+				ButtonFrame.Server.ServerFrame.PlayerName.Text = plr.DisplayName
 				ButtonFrame.Server.ServerFrame.UserId.Text = plr.UserId
 				ButtonFrame.Server.ServerFrame.DisplayName.Text = plr.DisplayName
 				if plr.MembershipType == Enum.MembershipType.None then
@@ -901,16 +901,20 @@ local function RKYDRN_fake_script() -- PlayerTracker.TheOnlyScript
 					ButtonFrame.Server.ServerFrame.MaybeScrolling.Team.Visible = false
 				end
 				for i,v in next, plr.Backpack:GetChildren() do
-					if v then
-						for i,b in next, ButtonFrame.Server.ServerFrame.Backpack:GetChildren() do
-							if not v.Name == b.Name then
-								local tool = ButtonFrame.Server.ServerFrame.Backpack.ToolExamplePLRTRKR:Clone()
+					print(v.Name, "Check1")
+					--if v then
+					--for i,b in next, ButtonFrame.Server.ServerFrame.Backpack:GetChildren() do
+	
+						--print(v.Name, "Check2")
+							--if not v.Name == b.Name then
+								local tool = ButtonFrame.Server.ServerFrame.Backpack:WaitForChild("ToolExamplePLRTRKR"):Clone()
 								tool.Parent = ButtonFrame.Server.ServerFrame.Backpack
 								tool.Text = v.Name
-							end
-						end
-					end
+							--end
+						--end
+					--end
 				end
+				--[[
 				plr.Backpack.ChildRemoved:Connect(function(tool)
 					for i,v in next, ButtonFrame.Server.ServerFrame.Backpack:GetChildren() do
 						if tool.Name == v.Name then
@@ -918,8 +922,9 @@ local function RKYDRN_fake_script() -- PlayerTracker.TheOnlyScript
 						end
 					end
 				end)
+				]]
 			end)
 		end
 	end
 end
-coroutine.wrap(RKYDRN_fake_script)()
+coroutine.wrap(DSTX_fake_script)()
