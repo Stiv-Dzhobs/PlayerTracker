@@ -658,7 +658,7 @@ PlaySong.TextSize = 14.000
 
 -- Scripts:
 
-local function LBQQUA_fake_script() -- PlayerTracker.TheOnlyScript 
+local function LAZGDXP_fake_script() -- PlayerTracker.TheOnlyScript 
 	local script = Instance.new('LocalScript', PlayerTracker)
 
 	local settings = {}
@@ -951,7 +951,7 @@ local function LBQQUA_fake_script() -- PlayerTracker.TheOnlyScript
 						local MyPlayer = game.Players.LocalPlayer
 						ButtonFrame.Server.ServerFrame.TeleportTo.Text = "Teleport"
 						local plr = plr
-						MyPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = plr.Character:WaitForChild("HumanoidRootPart").CFrame
+						MyPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = plr.Character.HumanoidRootPart.CFrame
 					end)
 				end
 				CallActivated()
@@ -959,4 +959,4 @@ local function LBQQUA_fake_script() -- PlayerTracker.TheOnlyScript
 		end
 	end
 end
-coroutine.wrap(LBQQUA_fake_script)()
+coroutine.wrap(LAZGDXP_fake_script)()
