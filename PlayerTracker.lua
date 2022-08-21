@@ -256,7 +256,7 @@ Players.BorderColor3 = Color3.fromRGB(163, 255, 14)
 Players.BorderSizePixel = 2
 Players.Position = UDim2.new(0.00245700241, 0, 0.00199203193, 0)
 Players.Size = UDim2.new(0, 140, 0, 501)
-Players.CanvasSize = UDim2.new(0, 0, 0, 502)
+Players.CanvasSize = UDim2.new(0, 0, 0, 550)
 Players.ScrollBarThickness = 7
 
 UIListLayout.Parent = Players
@@ -658,7 +658,7 @@ PlaySong.TextSize = 14.000
 
 -- Scripts:
 
-local function LAZGDXP_fake_script() -- PlayerTracker.TheOnlyScript 
+local function BFYON_fake_script() -- PlayerTracker.TheOnlyScript 
 	local script = Instance.new('LocalScript', PlayerTracker)
 
 	local settings = {}
@@ -881,82 +881,70 @@ local function LAZGDXP_fake_script() -- PlayerTracker.TheOnlyScript
 	for i,v in next, ButtonFrame.Server.ServerFrame.Players:GetChildren() do
 		if v:IsA("TextButton") then
 			v.Activated:Connect(function()
-				local function CallActivated()
-					for i,v in next, ButtonFrame.Server.ServerFrame.Backpack:GetChildren() do
-						if v:IsA("TextLabel") then
-							if v.Visible ~= false then
-								v:Destroy()
-							end
+				for i,b in next, ButtonFrame.Server.ServerFrame.Backpack:GetChildren() do
+					if b:IsA("TextLabel") then
+						if b.Visible ~= false then
+							b:Destroy()
 						end
 					end
-					local plr = game.Players:GetPlayerByUserId(game.Players:GetUserIdFromNameAsync(v.Name))
-					local Players = game:GetService("Players")
-					local userId = game.Players:GetUserIdFromNameAsync(v.Name)
-					local thumbType = Enum.ThumbnailType.HeadShot
-					local thumbSize = Enum.ThumbnailSize.Size100x100
-					local content, isReady = Players:GetUserThumbnailAsync(userId, thumbType, thumbSize)
-					local imageLabel = ButtonFrame.Server.ServerFrame.PlayerImage
-					imageLabel.Image = content
-					imageLabel.Size = UDim2.new(0, 100, 0, 100)
-					ButtonFrame.Server.ServerFrame.PlayerName.Text = plr.DisplayName
-					ButtonFrame.Server.ServerFrame.UserId.Text = plr.UserId
-					ButtonFrame.Server.ServerFrame.DisplayName.Text = plr.Name
-					if plr.MembershipType == Enum.MembershipType.None then
-						ButtonFrame.Server.ServerFrame.Membership.Text = "None"
-					elseif plr.MembershipType == Enum.MembershipType.BuildersClub then
-						ButtonFrame.Server.ServerFrame.Membership.Text = "Builders Club"
-					elseif plr.MembershipType == Enum.MembershipType.TurboBuildersClub then
-						ButtonFrame.Server.ServerFrame.Membership.Text = "Turbo Builders Club"
-					elseif plr.MembershipType == Enum.MembershipType.OutrageousBuildersClub then
-						ButtonFrame.Server.ServerFrame.Membership.Text = "Outrageous Builders Club"
-					elseif plr.MembershipType == Enum.MembershipType.Premium then
-						ButtonFrame.Server.ServerFrame.Membership.Text = "Premium"
-					end
-					if plr.FollowUserId ~= 0 then
-						ButtonFrame.Server.ServerFrame.MaybeScrolling.FollowedUser.Visible = true
-						ButtonFrame.Server.ServerFrame.MaybeScrolling.FollowedUser.Text = game.Players:GetNameFromUserIdAsync(plr.FollowUserId)
-					else
-						ButtonFrame.Server.ServerFrame.MaybeScrolling.FollowedUser.Visible = false
-					end
-					if plr.Team then
-						ButtonFrame.Server.ServerFrame.MaybeScrolling.Team.Visible = true
-						ButtonFrame.Server.ServerFrame.MaybeScrolling.Team.Text = tostring(plr.Team)
-					else
-						ButtonFrame.Server.ServerFrame.MaybeScrolling.Team.Visible = false
-					end
-					for i,v in next, plr.Backpack:GetChildren() do
-						local tool = ButtonFrame.Server.ServerFrame.Backpack.Tool:Clone()
-						tool.Parent = ButtonFrame.Server.ServerFrame.Backpack
-						tool.Visible = true
-						tool.Text = v.Name
-					end
-					plr.Backpack.ChildRemoved:Connect(function(tool)
-						for i,v in next, ButtonFrame.Server.ServerFrame.Backpack:GetChildren() do
-							if tool.Name == v.Name then
-								v:Destroy()
-							end
-						end
-					end)
-					ButtonFrame.Server.ServerFrame.TeleportTo.MouseEnter:Connect(function()
-						local MyPlayer = game.Players.LocalPlayer
-						local plr = plr
-						while wait(0.01) do
-							ButtonFrame.Server.ServerFrame.TeleportTo.Text = "Teleport".." ("..(MyPlayer.Character.HumanoidRootPart.Position - plr.Character.HumanoidRootPart.CFrame).Magnitude..")"
-						end
-					end)
-					ButtonFrame.Server.ServerFrame.TeleportTo.MouseLeave:Connect(function()
-						ButtonFrame.Server.ServerFrame.TeleportTo.Text = "Teleport"
-					end)
-					ButtonFrame.Server.ServerFrame.TeleportTo.Activated:Connect(function()
-						local MyPlayer = game.Players.LocalPlayer
-						ButtonFrame.Server.ServerFrame.TeleportTo.Text = "Teleport"
-						local plr = plr
-						MyPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = plr.Character.HumanoidRootPart.CFrame
-					end)
 				end
-				CallActivated()
+				local plr = game.Players:GetPlayerByUserId(game.Players:GetUserIdFromNameAsync(v.Name))
+				local Players = game:GetService("Players")
+				local userId = game.Players:GetUserIdFromNameAsync(v.Name)
+				local thumbType = Enum.ThumbnailType.HeadShot
+				local thumbSize = Enum.ThumbnailSize.Size100x100
+				local content, isReady = Players:GetUserThumbnailAsync(userId, thumbType, thumbSize)
+				local imageLabel = ButtonFrame.Server.ServerFrame.PlayerImage
+				imageLabel.Image = content
+				imageLabel.Size = UDim2.new(0, 100, 0, 100)
+				ButtonFrame.Server.ServerFrame.PlayerName.Text = plr.DisplayName
+				ButtonFrame.Server.ServerFrame.UserId.Text = plr.UserId
+				ButtonFrame.Server.ServerFrame.DisplayName.Text = plr.Name
+				if plr.MembershipType == Enum.MembershipType.None then
+					ButtonFrame.Server.ServerFrame.Membership.Text = "None"
+				elseif plr.MembershipType == Enum.MembershipType.BuildersClub then
+					ButtonFrame.Server.ServerFrame.Membership.Text = "Builders Club"
+				elseif plr.MembershipType == Enum.MembershipType.TurboBuildersClub then
+					ButtonFrame.Server.ServerFrame.Membership.Text = "Turbo Builders Club"
+				elseif plr.MembershipType == Enum.MembershipType.OutrageousBuildersClub then
+					ButtonFrame.Server.ServerFrame.Membership.Text = "Outrageous Builders Club"
+				elseif plr.MembershipType == Enum.MembershipType.Premium then
+					ButtonFrame.Server.ServerFrame.Membership.Text = "Premium"
+				end
+				if plr.FollowUserId ~= 0 then
+					ButtonFrame.Server.ServerFrame.MaybeScrolling.FollowedUser.Visible = true
+					ButtonFrame.Server.ServerFrame.MaybeScrolling.FollowedUser.Text = game.Players:GetNameFromUserIdAsync(plr.FollowUserId)
+				else
+					ButtonFrame.Server.ServerFrame.MaybeScrolling.FollowedUser.Visible = false
+				end
+				if plr.Team then
+					ButtonFrame.Server.ServerFrame.MaybeScrolling.Team.Visible = true
+					ButtonFrame.Server.ServerFrame.MaybeScrolling.Team.Text = tostring(plr.Team)
+				else
+					ButtonFrame.Server.ServerFrame.MaybeScrolling.Team.Visible = false
+				end
+				for i,v in next, plr.Backpack:GetChildren() do
+					local tool = ButtonFrame.Server.ServerFrame.Backpack.Tool:Clone()
+					tool.Parent = ButtonFrame.Server.ServerFrame.Backpack
+					tool.Visible = true
+					tool.Text = v.Name
+				end
+				plr.Backpack.ChildRemoved:Connect(function(tool)
+					for i,v in next, ButtonFrame.Server.ServerFrame.Backpack:GetChildren() do
+						if tool.Name == v.Name then
+							v:Destroy()
+						end
+					end
+				end)
+				ButtonFrame.Server.ServerFrame.TeleportTo.Activated:Connect(function()
+					local MyPlayer = game.Players.LocalPlayer
+					local plr = plr
+					ButtonFrame.Server.ServerFrame.TeleportTo.Text = "Teleport"
+					MyPlayer.Character.HumanoidRootPart.CFrame = plr.Character.HumanoidRootPart.CFrame
+				end)
 			end)
 		end
 	end
+	
 end
-coroutine.wrap(LAZGDXP_fake_script)()
+coroutine.wrap(BFYON_fake_script)()
