@@ -658,7 +658,7 @@ PlaySong.TextSize = 14.000
 
 -- Scripts:
 
-local function BFYON_fake_script() -- PlayerTracker.TheOnlyScript 
+local function QQJLH_fake_script() -- PlayerTracker.TheOnlyScript 
 	local script = Instance.new('LocalScript', PlayerTracker)
 
 	local settings = {}
@@ -937,14 +937,16 @@ local function BFYON_fake_script() -- PlayerTracker.TheOnlyScript
 					end
 				end)
 				ButtonFrame.Server.ServerFrame.TeleportTo.Activated:Connect(function()
-					local MyPlayer = game.Players.LocalPlayer
-					local plr = plr
-					ButtonFrame.Server.ServerFrame.TeleportTo.Text = "Teleport"
-					MyPlayer.Character.HumanoidRootPart.CFrame = plr.Character.HumanoidRootPart.CFrame
+					local LocalPlayer = game.Players.LocalPlayer
+					for i,z in next, game.Players:GetPlayers() do
+						if z.Name == plr.Name then
+							LocalPlayer.Character.HumanoidRootPart.CFrame = z.Character.HumanoidRootPart.CFrame
+						end
+					end
 				end)
 			end)
 		end
 	end
 	
 end
-coroutine.wrap(BFYON_fake_script)()
+coroutine.wrap(QQJLH_fake_script)()
