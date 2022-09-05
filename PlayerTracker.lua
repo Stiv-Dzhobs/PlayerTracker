@@ -724,7 +724,7 @@ local function BBXATE_fake_script() -- PlayerTracker.TheOnlyScript
 	
 	-- Gui Shortcuts
 	
-	local ScreenGui = game.Players.LocalPlayer.PlayerGui:WaitForChild("PlayerTracker")
+	local ScreenGui = game.Players.LocalPlayer.CoreGui:WaitForChild("PlayerTracker")
 	local BackFrame = ScreenGui.BackFrame
 	local BackSectioningFrame = BackFrame.BackSectioningFrame
 	local ButtonFrame = BackFrame.ButtonFrame
