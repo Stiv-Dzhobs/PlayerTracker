@@ -20,11 +20,11 @@ self.SearchFrame = Instance.new("Frame")
 self.Chat = Instance.new("TextButton")
 self.ChatFrame = Instance.new("Frame")
 self.Chats = Instance.new("ScrollingFrame")
-self.Chat_2 = Instance.new("Frame")
+self.UIListLayout = Instance.new("UIListLayout")
+self.Chat_2 = Instance.new("ScrollingFrame")
 self.PlayerImage = Instance.new("ImageLabel")
 self.WhoFrom = Instance.new("TextLabel")
 self.message = Instance.new("TextLabel")
-self.UIListLayout = Instance.new("UIListLayout")
 self.Server = Instance.new("TextButton")
 self.ServerFrame = Instance.new("Frame")
 self.Players = Instance.new("ScrollingFrame")
@@ -236,13 +236,19 @@ self.Chats.Position = UDim2.new(0.00245700241, 0, 0.00199203193, 0)
 self.Chats.Size = UDim2.new(0, 406, 0, 501)
 self.Chats.ScrollBarThickness = 4
 
+self.UIListLayout.Parent = self.Chats
+self.UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+
 self.Chat_2.Name = "Chat"
 self.Chat_2.Parent = self.Chats
 self.Chat_2.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
 self.Chat_2.BackgroundTransparency = 1.000
 self.Chat_2.BorderColor3 = Color3.fromRGB(170, 255, 0)
+self.Chat_2.BorderSizePixel = 2
 self.Chat_2.Position = UDim2.new(0.00492610829, 0, 0.00399201596, 0)
+self.Chat_2.Selectable = false
 self.Chat_2.Size = UDim2.new(0, 403, 0, 37)
+self.Chat_2.ScrollBarThickness = 1
 
 self.PlayerImage.Name = "PlayerImage"
 self.PlayerImage.Parent = self.Chat_2
@@ -265,17 +271,15 @@ self.WhoFrom.TextWrapped = true
 self.message.Name = "message"
 self.message.Parent = self.Chat_2
 self.message.BackgroundColor3 = Color3.fromRGB(167, 140, 200)
+self.message.BackgroundTransparency = 1.000
 self.message.Position = UDim2.new(0.302729517, 0, 0, 0)
 self.message.Size = UDim2.new(0, 279, 0, 37)
-self.message.Font = Enum.Font.SourceSansItalic
+self.message.Font = Enum.Font.SourceSans
 self.message.Text = "Pure glass yo"
-self.message.TextColor3 = Color3.fromRGB(0, 0, 0)
+self.message.TextColor3 = Color3.fromRGB(170, 255, 0)
 self.message.TextScaled = true
 self.message.TextSize = 14.000
 self.message.TextWrapped = true
-
-self.UIListLayout.Parent = self.Chats
-self.UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 
 self.Server.Name = "Server"
 self.Server.Parent = self.ButtonFrame
@@ -712,7 +716,7 @@ self.PlaySong.TextSize = 14.000
 
 
 -- Scripts:
-local function BBXATE_fake_script() -- PlayerTracker.TheOnlyScript 
+local function HHEQ_fake_script() -- PlayerTracker.TheOnlyScript 
 	local script = Instance.new('LocalScript', PlayerTracker)
 
 	local settings = {}
@@ -724,7 +728,7 @@ local function BBXATE_fake_script() -- PlayerTracker.TheOnlyScript
 	
 	-- Gui Shortcuts
 	
-	local ScreenGui = game.Players.LocalPlayer.CoreGui:WaitForChild("PlayerTracker")
+	local ScreenGui = game:GetService("CoreGui"):WaitForChild("PlayerTracker")
 	local BackFrame = ScreenGui.BackFrame
 	local BackSectioningFrame = BackFrame.BackSectioningFrame
 	local ButtonFrame = BackFrame.ButtonFrame
@@ -1030,4 +1034,4 @@ local function BBXATE_fake_script() -- PlayerTracker.TheOnlyScript
 	
 	
 end
-coroutine.wrap(BBXATE_fake_script)()
+coroutine.wrap(HHEQ_fake_script)()
